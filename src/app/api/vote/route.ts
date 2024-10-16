@@ -15,7 +15,7 @@ export const OPTIONS = GET;
 
 export async function GET(request: Request) {
   const actionMetadata: ActionGetResponse = {
-    icon: "https://drive.google.com/file/d/1ner621LKqTMVGpoEHqNnXaWNXpyJS2q5/view?usp=sharing",
+    icon: "https://res.cloudinary.com/du4hfy4yd/image/upload/v1729100107/crunchy_uteenq.webp",
     title: "Vote for your favorite type of peanut butter",
     description: "Vote between crunchy and smooth peanut butter",
     label: "Vote",
