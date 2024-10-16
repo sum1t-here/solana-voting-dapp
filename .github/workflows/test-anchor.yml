@@ -33,26 +33,17 @@ jobs:
           node-version: "20"
           solana-cli-version: "1.18.9"
 
-      - name: Configure Solana
-        run: |
-          # Set the cluster to Devnet
-          solana config set --url https://api.devnet.solana.com
-
       - name: Generate new keypair
         run: solana-keygen new --no-bip39-passphrase
 
-      - name: Airdrop SOL
-        run: |
-          # Airdrop SOL to the new keypair
-          solana airdrop 2
+      - name: Set solana target cluster to local
+        run: solana config set --url http://localhost:8899
 
       - name: Check solana config
         run: solana config get
 
-      - name: Build Anchor program
-        run: pnpm run anchor build
+      - run: pnpm run anchor build
         shell: bash
 
-      - name: Run Anchor tests
-        run: pnpm run anchor test
+      - run: pnpm run anchor test
         shell: bash
