@@ -35,7 +35,17 @@ export async function GET(request: Request) {
     },
   };
 
-  return Response.json(actionMetadata, { headers: ACTIONS_CORS_HEADERS });
+  // Create response with additional headers for action version and blockchain ID
+  const response = new Response(JSON.stringify(actionMetadata), {
+    headers: {
+      ...ACTIONS_CORS_HEADERS,
+      "X-Action-Version": "1.0", // Adjust this version as needed
+      "X-Blockchain-Ids": "9bgYfjUMRbdrwpfvzQLWdnhEMJ4o75xLu5SLJjK2zeKs", // Replace with your actual blockchain ID
+      "Content-Type": "application/json", // Ensure content type is set
+    },
+  });
+
+  return response;
 }
 
 export async function POST(request: Request) {
@@ -82,6 +92,7 @@ export async function POST(request: Request) {
     lastValidBlockHeight: blockHash.lastValidBlockHeight,
   }).add(instruction);
 
+  // Check if transaction is valid before sending
   const response = await createPostResponse({
     fields: {
       transaction: transaction,
@@ -89,5 +100,15 @@ export async function POST(request: Request) {
     },
   });
 
-  return Response.json(response, { headers: ACTIONS_CORS_HEADERS });
+  // Create a new response to include headers
+  const finalResponse = new Response(JSON.stringify(response), {
+    headers: {
+      ...ACTIONS_CORS_HEADERS,
+      "X-Action-Version": "1.0", // Adjust this version as needed
+      "X-Blockchain-Ids": "9bgYfjUMRbdrwpfvzQLWdnhEMJ4o75xLu5SLJjK2zeKs", // Replace with your actual blockchain ID
+      "Content-Type": "application/json", // Ensure content type is set
+    },
+  });
+
+  return finalResponse;
 }
