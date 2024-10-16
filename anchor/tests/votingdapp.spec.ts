@@ -8,7 +8,7 @@ import { BankrunProvider } from "anchor-bankrun";
 const IDL = require("../target/idl/votingdapp.json");
 
 const votingAddress = new PublicKey(
-  "AsjZ3kWAUSQRNt2pZVeJkywhZ6gpLpHZmJjduPmKZDZZ"
+  "9bgYfjUMRbdrwpfvzQLWdnhEMJ4o75xLu5SLJjK2zeKs"
 );
 
 describe("votingdapp", () => {
